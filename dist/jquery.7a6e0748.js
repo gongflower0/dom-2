@@ -118,8 +118,15 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"jquery.js":[function(require,module,exports) {
-window.jQuery = function (selector) {
-  var elements = document.querySelectorAll(selector); //api可以操作elements
+window.jQuery = function (selectorOrArray) {
+  var elements;
+
+  if (typeof selectorOrArray === 'string') {
+    elements = document.querySelectorAll(selectorOrArray);
+  } else if (selectorOrArray instanceof Array) {
+    elements = selectorOrArray;
+  } //api可以操作elements
+
 
   return {
     addClass: function addClass(className) {
@@ -138,7 +145,8 @@ window.jQuery = function (selector) {
         array = array.concat(Array.from(elements[i].querySelectorAll(selector)));
       }
 
-      return array;
+      var newApi = jQuery(array);
+      return newApi;
     }
   };
 };
@@ -170,7 +178,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52371" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60306" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

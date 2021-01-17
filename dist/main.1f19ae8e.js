@@ -121,8 +121,12 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 // const api =jQuery('.test')//jQuery是一个全局变量
 // api.addClass('red').addClass('blue')//链式操作
 // //遍历所有刚才获取的元素，添加.red
-var x1 = jQuery('.test1').find('.child');
-console.log(x1); // obj.fn(p1)//函数里的this就是obj
+// const x1=jQuery('.test1').find('.child')
+// console.log(x1)
+var api1 = jQuery('.test');
+api1.addClass('blue');
+var api2 = api1.find('.child').addClass('red');
+api1.addClass('green'); // obj.fn(p1)//函数里的this就是obj
 // obj.fn.call(obj,p1)
 },{}],"../../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -152,7 +156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52371" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60306" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

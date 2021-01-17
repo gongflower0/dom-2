@@ -1,5 +1,11 @@
-window.jQuery=function(selector){
-    const elements=document.querySelectorAll(selector)
+window.jQuery=function(selectorOrArray){
+    let elements
+    if (typeof selectorOrArray==='string'){
+        elements=document.querySelectorAll(selectorOrArray)
+    }else if(selectorOrArray instanceof Array){
+        elements=selectorOrArray
+    }
+    
     //api可以操作elements
     return{
         addClass(className){
@@ -8,6 +14,7 @@ window.jQuery=function(selector){
                 const element=element[i]
                 element.classList.add(className)
             }
+            
             return this
         },
         find(selector){
@@ -15,7 +22,8 @@ window.jQuery=function(selector){
             for(let i=0;i<elements.length;i++){
                 array=array.concat(Array.from(elements[i].querySelectorAll(selector)))
             }
-            return array
+            const newApi=jQuery(array)
+            return newApi
         }
     }
 }
